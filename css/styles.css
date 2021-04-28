@@ -42,7 +42,8 @@
   width: 2.3rem !important;
   height: 1.3rem !important;
   margin-top: 0.9vh !important;
-  margin-right: 0.8vw !important;
+  margin-right: 2px !important;
+  outline: none !important;
 }
 
 #dataShow,

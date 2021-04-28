@@ -59,8 +59,6 @@ function fillTable(data) {
         cellColspan.id = "fullyColspan";
         document.getElementById("fullyColspan").colSpan = "8";
         cellColspan.innerText = "Nenhum resultado encontrado.";
-        console.log(cellColspan);
-
         return
     }
 
