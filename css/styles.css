@@ -1,0 +1,67 @@
+#title {
+  margin: auto 25vw;
+  width: 50%;
+}
+#title > span {
+  font-size: max(4.2vw, 38px);
+}
+
+#selectField {
+  margin: auto 26vw;
+  width: max(44vw, 150px);
+}
+#selectField > label {
+  font-size: max(1.2vw, 16px);
+  font-weight: normal;
+}
+#professor {
+  font-size: max(1.2vw, 12px);
+}
+#dataShow {
+  margin: 35px auto;
+  max-width: 90%;
+}
+
+#dataShowerBody {
+  cursor: pointer;
+}
+
+table > tbody > tr > td + td + td {
+  font-size: xx-large;
+  text-align: center;
+  min-width: 20px;
+}
+
+.tableFixHead {
+  overflow: auto;
+  height: 100px;
+}
+.tableFixHead thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.my-custom-scrollbar {
+  position: relative;
+  height: 500px;
+  overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+  display: block;
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
+}
