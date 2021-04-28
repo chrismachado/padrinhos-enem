@@ -12,3 +12,8 @@ function populateSelect() {
 }
 
 populateSelect();
+
+function refresh() {
+    var spinner = document.querySelector('.loader');
+    spinner.classList.add('spin');
+}

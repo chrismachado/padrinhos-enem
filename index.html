@@ -12,7 +12,6 @@
 
 </head>
 <body>
-
     <div id="header">
         <div id="title">
             <span>Padrinhos do ENEM 2021</span>
@@ -22,25 +21,50 @@
             <select class="form-select" name="professor" id="professor">
                 <option value="">Selecione uma opção</option>
             </select>
+            <div id="filterSelect">
+                <label for="sort-select">Ordenar por: </label>
+                <select class="form-select" name="sort-select" id="sort-select">
+                    <option value="primeira">Primeira opção</option>
+                    <option value="segunda">Segunda opção</option>
+                    <option value="terceira">Terceira opção</option>
+                    <option value="quarta">Quarta opção</option>
+                    <option value="quinta">Quinta opção</option>
+                    <option value="sexta">Sexta opção</option>
+                </select>
+
+                <div class="form-check form-switch" id="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheck">
+                    <label class="form-check-label" for="flexCheck">
+                        Excluir outras
+                    </label>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="table-wrapper-scroll-y my-custom-scrollbar tableFixHead" id="dataShow">
-        <table id="dataShower" class="table table-bordered table-striped table-hover">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">Aluno</th>
-                    <th scope="col">Curso</th>
-                    <th scope="col">Primeira</th>
-                    <th scope="col">Segunda</th>
-                    <th scope="col">Terceira</th>
-                    <th scope="col">Quarta</th>
-                    <th scope="col">Quinta</th>
-                    <th scope="col">Sexta</th>
-                </tr>
-            </thead>
-            <tbody id="dataShowerBody">
-            </tbody>
-        </table>
+    <div id="table-content">
+        <div id="counter" hidden="true">
+            <label for="countProfessor">Total de alunos que escolheram este professor opção: </label>
+            <span id="countProfessor">0</span>
+        </div>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar tableFixHead" id="dataShow">
+            <table id="dataShower" class="table table-bordered table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Aluno</th>
+                        <th scope="col">Curso</th>
+                        <th scope="col">Primeira</th>
+                        <th scope="col">Segunda</th>
+                        <th scope="col">Terceira</th>
+                        <th scope="col">Quarta</th>
+                        <th scope="col">Quinta</th>
+                        <th scope="col">Sexta</th>
+                    </tr>
+                </thead>
+                <tbody id="dataShowerBody">
+                </tbody>
+            </table>
+            <div class="loader" id="loader"></div>
+        </div>
     </div>
     <script src="./scripts/metadata.js"></script>
     <script src="./scripts/data.js"></script>

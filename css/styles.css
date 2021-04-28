@@ -9,21 +9,60 @@
 #selectField {
   margin: auto 26vw;
   width: max(44vw, 150px);
+  height: 15vh;
 }
-#selectField > label {
+
+#selectField > label + select {
+  margin-bottom: 1.5vh;
+}
+
+#selectField > label,
+#filterSelect > label,
+#filterSelect #form-check > label {
   font-size: max(1.2vw, 16px);
   font-weight: normal;
 }
-#professor {
+#professor,
+#sort-select {
   font-size: max(1.2vw, 12px);
 }
-#dataShow {
-  margin: 35px auto;
+
+#filterSelect > select {
+  width: 15vw;
+  display: inline-block;
+}
+
+#filterSelect #form-check {
+  width: 10vw;
+  margin-left: 3vw;
+  display: inline-block;
+}
+
+.form-check-input {
+  width: 2.3rem !important;
+  height: 1.3rem !important;
+  margin-top: 0.9vh !important;
+  margin-right: 0.8vw !important;
+}
+
+#dataShow,
+#counter {
+  margin: 5px auto;
   max-width: 90%;
+}
+
+#counter > label,
+#countProfessor {
+  font-size: 18px;
+  font-weight: 300;
 }
 
 #dataShowerBody {
   cursor: pointer;
+}
+
+#table-content {
+  margin-top: max(6vh, 49px);
 }
 
 table > tbody > tr > td + td + td {
@@ -64,4 +103,27 @@ table > tbody > tr > td + td + td {
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #a8bbbf;
+}
+
+.loader {
+  display: none;
+  margin: auto;
+  width: 80px;
+  height: 80px;
+  border: 16px solid white;
+  border-top: 16px solid #bada55;
+  border-radius: 50%;
+}
+
+.spin {
+  animation: spinner 1.5s linear infinite;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

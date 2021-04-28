@@ -1,26 +1,33 @@
 const dataTable = document.getElementById("dataShowerBody");
 const loadingDiv = document.getElementById("loading");
 const professorSelect = document.getElementById("professor");
+const sortSelect = document.getElementById("sort-select");
+const flexCheck = document.getElementById("flexCheck");
+const countProfessor = document.getElementById("countProfessor");
 const spanAccepted = '<span class="glyphicon glyphicon-ok text-success"></span>';
 const spanDenied = '<span class="glyphicon glyphicon-minus"></span>';
-const linkToCSV = 'https://spreadsheets.google.com/feeds/cells/1_yJ8Ia37Nzq083txMBgm7-1wUzUdjW49_RTcVBa9O5I/1/public/full?alt=json';
+const linkToCSV = 'https://spreadsheets.google.com/feeds/cells/1pAEt9qXRtF_sORbLP-0PJIphstuPf8yKMSXH-oIj2TQ/1/public/full?alt=json';
+
 
 async function loadData() {
     dataTable.innerHTML = '';
     let match = professorSelect.value
+    document.getElementById('loader').style.display = 'block';
+    refresh();
     const response = await fetch(linkToCSV);
     const json = await response.json();
+    const loader = await document.getElementById('loader');
+    loader.style.display = "none";
+    
     const data = json["feed"]["entry"];
     let newData = filterSSData(match, data);
-    fillTable(newData);
-    
+    newData = filterDataByOption(newData, sortSelect.value);
+    fillTable(sortByKey(newData, sortSelect.value));
+    statistics(newData);
 }
 
 function showData(data) {
-    // console.log(data);
-
     let finalStr = '';
-
     data.forEach(function (item) {
         if (item["gs$cell"]["col"] == 3) {
             finalStr += "Nome: " + item["gs$cell"]["inputValue"] + "\n";
@@ -39,24 +46,24 @@ function showData(data) {
         } else if (item["gs$cell"]["col"] == 12) {
             finalStr += "Sexta opcao: " + item["gs$cell"]["inputValue"] + "\n";
         }
-            // let strFormat = "" + item['nome'] + "\n"
-            //     + item['curso'] + "\n"
-            //     + "Primeira opção: " + item['primeira'] + "\n"
-            //     + "Segunda opção: " + item['segunda'] + "\n"
-            //     + "Terceira opção: " + item['terceira'] + "\n"
-            //     + "Quarta opção: " + item['quarta'] + "\n"
-            //     + "Quinta opção: " + item['quinta'] + "\n"
-            //     + "Sexta opção: " + item['sexta'] + "\n";
-            
-            // console.log(item["gs$cell"]["col"])
     });
+
     document.querySelector("#dataShow").innerText += finalStr;
     console.log(finalStr)
-
-
 }
 
 function fillTable(data) {
+    if (data.length === 0) {
+        let newRow = dataTable.insertRow();
+        let cellColspan = newRow.insertCell(0);
+        cellColspan.id = "fullyColspan";
+        document.getElementById("fullyColspan").colSpan = "8";
+        cellColspan.innerText = "Nenhum resultado encontrado.";
+        console.log(cellColspan);
+
+        return
+    }
+
     data.forEach(function (item) {
         let newRow = dataTable.insertRow();
         let newName = newRow.insertCell(0);
@@ -115,33 +122,38 @@ function filterSSData(match, data) {
     return newData;
 }
 
-function filterData(match, data) {
-    let newData = [];
-    data.forEach(function (item) {
-        let newItem = { nome: item['Informe seu nome completo.'], curso: item['Informe o seu curso.'], primeira: spanDenied, segunda: spanDenied, terceira: spanDenied, quarta: spanDenied, quinta: spanDenied, sexta: spanDenied };
-        if (item['Primeira opção'] == match) {
-            newItem['primeira'] = spanAccepted;
-            newData.push(newItem);
-        } else if (item['Segunda opção'] == match) {
-            newItem['segunda'] = spanAccepted;
-            newData.push(newItem);
-        } else if (item['Terceira opção'] == match) {
-            newItem['terceira'] = spanAccepted;
-            newData.push(newItem);
-        } else if (item['Quarta opção'] == match) {
-            newItem['quarta'] = spanAccepted;
-            newData.push(newItem);
-        } else if (item['Quinta opção'] == match) {
-            newItem['quinta'] = spanAccepted;
-            newData.push(newItem);
-        } else if (item['Sexta opção'] == match) {
-            newItem['sexta'] = spanAccepted;
-            newData.push(newItem);
+function filterDataByOption(data, key) {
+    let newData = []
+    if (flexCheck.checked) {
+        for (let i = 0; i < data.length; i++) {
+            const item = data[i][key];
+            if (item == spanAccepted) {
+                newData.push(data[i]);
+            }
         }
-    });
-    return newData;
+        return newData
+    }
+    return data;
+}
+
+function statistics(data) {
+    if (data.length == 0) {
+        document.getElementById("counter").hidden = true;
+    } else {
+        document.getElementById("counter").hidden = false;
+    }
+    countProfessor.innerText = data.length;
 
 }
 
+function sortByKey(data, key) {
+    return data.sort(function (a, b) { 
+        return ((a[key] < b[key]) ? 1 : ((a[key] > b[key]) ? -1 : 0));
+    });
+}
+
 professorSelect.onchange = loadData;
+sortSelect.onchange = loadData;
+flexCheck.onchange = loadData;
+
 
