@@ -6,7 +6,8 @@ const flexCheck = document.getElementById("flexCheck");
 const countProfessor = document.getElementById("countProfessor");
 const spanAccepted = '<span class="glyphicon glyphicon-ok text-success"></span>';
 const spanDenied = '<span class="glyphicon glyphicon-minus"></span>';
-const linkToCSV = 'https://spreadsheets.google.com/feeds/cells/1pAEt9qXRtF_sORbLP-0PJIphstuPf8yKMSXH-oIj2TQ/1/public/full?alt=json';
+// const linkToCSV = 'resource/data.json';
+const linkToJson = 'https://opensheet.elk.sh/1uhSniGStxjzYqFRI9InX0shdclQFX8oWMZZq2G90O1s/A1:Z14989';
 
 
 async function loadData() {
@@ -14,12 +15,14 @@ async function loadData() {
     let match = professorSelect.value
     document.getElementById('loader').style.display = 'block';
     refresh();
-    const response = await fetch(linkToCSV);
+    const response = await fetch(linkToJson);
     const json = await response.json();
     const loader = await document.getElementById('loader');
     loader.style.display = "none";
+
+    const data = json;
+    // showData(data);
     
-    const data = json["feed"]["entry"];
     let newData = filterSSData(match, data);
     newData = filterDataByOption(newData, sortSelect.value);
     fillTable(sortByKey(newData, sortSelect.value));
@@ -29,23 +32,14 @@ async function loadData() {
 function showData(data) {
     let finalStr = '';
     data.forEach(function (item) {
-        if (item["gs$cell"]["col"] == 3) {
-            finalStr += "Nome: " + item["gs$cell"]["inputValue"] + "\n";
-        } else if (item["gs$cell"]["col"] == 5) {
-            finalStr += "Curso: " + item["gs$cell"]["inputValue"] + "\n";
-        } else if (item["gs$cell"]["col"] == 7) {
-            finalStr += "Primeira opcao: " + item["gs$cell"]["inputValue"] + "\t";
-        } else if (item["gs$cell"]["col"] == 8) {
-            finalStr += "Segunda opcao: " + item["gs$cell"]["inputValue"] + "\t";
-        } else if (item["gs$cell"]["col"] == 9) {
-            finalStr += "Terceira opcao: " + item["gs$cell"]["inputValue"] + "\t";
-        } else if (item["gs$cell"]["col"] == 10) {
-            finalStr += "Quarta opcao: " + item["gs$cell"]["inputValue"] + "\t";
-        } else if (item["gs$cell"]["col"] == 11) {
-            finalStr += "Quinta opcao: " + item["gs$cell"]["inputValue"] + "\t";
-        } else if (item["gs$cell"]["col"] == 12) {
-            finalStr += "Sexta opcao: " + item["gs$cell"]["inputValue"] + "\n";
-        }
+        finalStr += "Nome: " + item["Informe seu nome completo."] + "\n";
+        finalStr += "Curso " + item["Informe o seu curso."] + "\n";
+        finalStr += "Primeira opção " + item["Primeira opção"] + "\t";
+        finalStr += "Segunda opção " + item["Segunda opção"] + "\t";
+        finalStr += "Terceira opção " + item["Terceira opção"] + "\t";
+        finalStr += "Quarta opção " + item["Quarta opção"] + "\t";
+        finalStr += "Quinta opção " + item["Quinta opção"] + "\t";
+        finalStr += "Sexta opção " + item["Sexta opção"] + "\t";
     });
 
     document.querySelector("#dataShow").innerText += finalStr;
@@ -64,8 +58,10 @@ function fillTable(data) {
 
     data.forEach(function (item) {
         let newRow = dataTable.insertRow();
+
         let newName = newRow.insertCell(0);
         newName.innerHTML = item['nome'].toUpperCase();
+
         let newCurso = newRow.insertCell(1);
         newCurso.innerHTML = item['curso'].toUpperCase();
 
@@ -93,29 +89,27 @@ function filterSSData(match, data) {
         const item = data[i];
         let newItem = { nome: nomeController, curso: cursoController, primeira: spanDenied, segunda: spanDenied, terceira: spanDenied, quarta: spanDenied, quinta: spanDenied, sexta: spanDenied };
 
-        if (item["gs$cell"]["col"] == 3) {
-            nomeController = item["gs$cell"]["inputValue"];
-        } else if (item["gs$cell"]["col"] == 5) {
-            cursoController = item["gs$cell"]["inputValue"];
-        } else if (item["gs$cell"]["col"] == 7 && item["gs$cell"]["inputValue"] == match) {
+        newItem['nome'] = item["Informe seu nome completo."];
+        newItem['curso'] = item["Informe o seu curso."];
+        if (item["Primeira opção"] == match) {
             newItem['primeira'] = spanAccepted;
             newData.push(newItem);
-        } else if (item["gs$cell"]["col"] == 8 && item["gs$cell"]["inputValue"] == match) {
+        } else if (item["Segunda opção"] == match) {
             newItem['segunda'] = spanAccepted;
             newData.push(newItem);
-        } else if (item["gs$cell"]["col"] == 9 && item["gs$cell"]["inputValue"] == match) {
+        } else if (item["Terceira opção"] == match) {
             newItem['terceira'] = spanAccepted;
             newData.push(newItem);
-        } else if (item["gs$cell"]["col"] == 10 && item["gs$cell"]["inputValue"] == match) {
+        } else if (item["Quarta opção"] == match) {
             newItem['quarta'] = spanAccepted;
             newData.push(newItem);
-        } else if (item["gs$cell"]["col"] == 11 && item["gs$cell"]["inputValue"] == match) {
+        } else if (item["Quinta opção"] == match) {
             newItem['quinta'] = spanAccepted;
             newData.push(newItem);
-        } else if (item["gs$cell"]["col"] == 12 && item["gs$cell"]["inputValue"] == match) {
+        } else if (item["Sexta opção"] == match) {
             newItem['sexta'] = spanAccepted;
             newData.push(newItem);
-        }
+        } 
     }
     return newData;
 }
@@ -145,7 +139,7 @@ function statistics(data) {
 }
 
 function sortByKey(data, key) {
-    return data.sort(function (a, b) { 
+    return data.sort(function (a, b) {
         return ((a[key] < b[key]) ? 1 : ((a[key] > b[key]) ? -1 : 0));
     });
 }
@@ -153,5 +147,3 @@ function sortByKey(data, key) {
 professorSelect.onchange = loadData;
 sortSelect.onchange = loadData;
 flexCheck.onchange = loadData;
-
-
