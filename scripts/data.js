@@ -7,6 +7,7 @@ const countProfessor = document.getElementById("countProfessor");
 const spanAccepted = '<span class="glyphicon glyphicon-ok text-success"></span>';
 const spanDenied = '<span class="glyphicon glyphicon-minus"></span>';
 const linkToJson = 'https://opensheet.elk.sh/1uhSniGStxjzYqFRI9InX0shdclQFX8oWMZZq2G90O1s/A1:Z14989';
+// const linkToJson = 'https://opensheet.elk.sh/1pAEt9qXRtF_sORbLP-0PJIphstuPf8yKMSXH-oIj2TQ/A1:Z14989'; // 21
 
 
 async function loadData() {
@@ -15,8 +16,8 @@ async function loadData() {
     document.getElementById('loader').style.display = 'block';
     refresh();
     const data = await fetch(linkToJson)
-        .then((res) => { 
-            return res.json(); 
+        .then((res) => {
+            return res.json();
         }).catch((err) => {
             alert("Um erro inesperado ocorreu, tente novamente em alguns instantes.");
         });
@@ -48,30 +49,21 @@ function showData(data) {
 
 function fillTable(data) {
     dataTable.innerHTML = '';
+
     if (data.length === 0) {
-        let newRow = dataTable.insertRow();
-        let cellColspan = newRow.insertCell(0);
+        let newRow = dataTable.insertRow(), cellColspan = newRow.insertCell(0);
         cellColspan.id = "fullyColspan";
         document.getElementById("fullyColspan").colSpan = "8";
         cellColspan.innerText = "Nenhum resultado encontrado.";
         return
     }
 
-    data.forEach((item) => {
-        let newRow = dataTable.insertRow();
-
-        for (const i of item) {
-            console.log(i);
-        };
-
-        newRow.insertCell(0).innerHTML = item['nome'].toUpperCase();
-        newRow.insertCell(1).innerHTML = item['curso'].toUpperCase();
-        newRow.insertCell(2).innerHTML = item['primeira'];
-        newRow.insertCell(3).innerHTML = item['segunda'];
-        newRow.insertCell(4).innerHTML = item['terceira'];
-        newRow.insertCell(5).innerHTML = item['quarta'];
-        newRow.insertCell(6).innerHTML = item['quinta'];
-        newRow.insertCell(7).innerHTML = item['sexta'];
+    data.forEach((items) => {
+        let newRow = dataTable.insertRow(), i = 0;
+        for (const [key, value] of Object.entries(items)) {
+            newRow.insertCell(i).innerHTML = value.toUpperCase();
+            i++;
+        }
     });
 }
 
@@ -84,24 +76,13 @@ function filterSSData(match, data) {
 
         newItem['nome'] = item["Informe seu nome completo."];
         newItem['curso'] = item["Informe o seu curso."];
-        if (item["Primeira opção"] == match) {
-            newItem['primeira'] = spanAccepted;
-            newData.push(newItem);
-        } else if (item["Segunda opção"] == match) {
-            newItem['segunda'] = spanAccepted;
-            newData.push(newItem);
-        } else if (item["Terceira opção"] == match) {
-            newItem['terceira'] = spanAccepted;
-            newData.push(newItem);
-        } else if (item["Quarta opção"] == match) {
-            newItem['quarta'] = spanAccepted;
-            newData.push(newItem);
-        } else if (item["Quinta opção"] == match) {
-            newItem['quinta'] = spanAccepted;
-            newData.push(newItem);
-        } else if (item["Sexta opção"] == match) {
-            newItem['sexta'] = spanAccepted;
-            newData.push(newItem);
+
+        for (const [key, value] of Object.entries(item)) {
+            if (value == match) {
+                newItem[key.split(" ")[0].toLowerCase()] = spanAccepted;
+                newData.push(newItem);
+                break;
+            }
         }
     }
     return newData;

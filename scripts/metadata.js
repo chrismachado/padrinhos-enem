@@ -1,10 +1,9 @@
-
-const teacher_JSON = fetch("./resource/2021/teacher-list.json")
+const teacher_list = fetch("./resource/2022/teacher-list.json")
     .then((res) => { return res.json(); });
 
 function populateSelect() {
     var professorSelect = document.getElementById("professor");
-    teacher_JSON
+    teacher_list
         .then((items) => {
             items.forEach(item => {
                 var option = document.createElement("option");
@@ -15,9 +14,9 @@ function populateSelect() {
         });
 }
 
-populateSelect();
-
 function refresh() {
     var spinner = document.querySelector('.loader');
     spinner.classList.add('spin');
 }
+
+populateSelect();
