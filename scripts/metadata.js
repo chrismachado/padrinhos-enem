@@ -1,44 +1,18 @@
-const professores = ["Anderson Ferreira",
-    "Bruno Raniere",
-    "Camila Martins",
-    "Cícero Rêgo",
-    "Cleilson Santos",
-    "Christiano Machado",
-    "Dalmo Maia",
-    "Deysiane Mendes",
-    "Diomaique Vieira",
-    "Estefânia Teixeira",
-    "Franci Lira",
-    "Gabriel Xavier",
-    "Gilana Ferreira",
-    "Greycianne Félix",
-    "Jackson Almeida",
-    "Jean Nascimento",
-    "Jedson Pereira",
-    "Jéssica Oliveira",
-    "Karol Lima",
-    "Lilian Teixeira",
-    "Luana Louredo",
-    "Lucas Abreu",
-    "Lucas Queiroz",
-    "Luziana Amorim",
-    "Manoel Gomes",
-    "Manoel Oliveira",
-    "Sheila Yamamoto",
-    "Victor Barros",
-    "Wesley Carlos",
-    "Zenilda Moura",
-];
+
+const teacher_JSON = fetch("./resource/2022/teacher-list.json")
+    .then((res) => { return res.json(); });
 
 function populateSelect() {
     var professorSelect = document.getElementById("professor");
-
-    professores.forEach(function populate(item) {
-        var option = document.createElement("option");
-        option.value = item;
-        option.innerHTML = item;
-        professorSelect.appendChild(option);
-    });
+    teacher_JSON
+        .then((items) => {
+            items.forEach(item => {
+                var option = document.createElement("option");
+                option.value = item['name'];
+                option.innerHTML = item['name'];
+                professorSelect.appendChild(option);
+            });
+        });
 }
 
 populateSelect();
