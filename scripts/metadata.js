@@ -1,5 +1,5 @@
 
-const teacher_JSON = fetch("./resource/2022/teacher-list.json")
+const teacher_JSON = fetch("./resource/2021/teacher-list.json")
     .then((res) => { return res.json(); });
 
 function populateSelect() {
