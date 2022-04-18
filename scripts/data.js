@@ -6,8 +6,9 @@ const flexCheck = document.getElementById("flexCheck");
 const countProfessor = document.getElementById("countProfessor");
 const spanAccepted = '<span class="glyphicon glyphicon-ok text-success"></span>';
 const spanDenied = '<span class="glyphicon glyphicon-minus"></span>';
-const linkToJson = 'https://opensheet.elk.sh/1uhSniGStxjzYqFRI9InX0shdclQFX8oWMZZq2G90O1s/A1:Z14989';
-// const linkToJson = 'https://opensheet.elk.sh/1pAEt9qXRtF_sORbLP-0PJIphstuPf8yKMSXH-oIj2TQ/A1:Z14989'; // 21
+// const linkToJson = 'https://opensheet.elk.sh/1uhSniGStxjzYqFRI9InX0shdclQFX8oWMZZq2G90O1s/A1:Z14989';
+// const linkToJson = './resource/2021/data.xlsx';
+const linkToJson = 'https://opensheet.elk.sh/1pAEt9qXRtF_sORbLP-0PJIphstuPf8yKMSXH-oIj2TQ/A1:Z14989'; // 21
 
 
 async function loadData() {
