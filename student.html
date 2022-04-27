@@ -1,0 +1,87 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <title>Padrinhos do ENEM 2022 - Resultados Alunos</title>
+  </head>
+  <body>
+    <div id="header">
+      <div id="title">
+        <span>Padrinhos do ENEM 2022</span>
+        <span>Resultados Alunos</span>
+      </div>
+      <div id="selectField">
+        <label for="student">Selecione um Aluno: </label>
+        <select class="form-select" name="student" id="student">
+          <option value="">Selecione uma opção</option>
+        </select>
+        <div id="filterSelect">
+          <label for="curso-select">Selecione um curso: </label>
+          <select class="form-select" name="curso-select" id="curso-select">
+            <option value="ADMINISTRAÇÃO">Administração</option>
+            <option value="AUTOMAÇÃO INDUSTRIAL">Automação Industrial</option>
+            <option value="ELETROMECÂNICA">Eletromecânica</option>
+            <option value="INFORMÁTICA">Informática</option>
+          </select>
+
+          <!-- <div class="form-check form-switch" id="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheck"
+            />
+            <label class="form-check-label" for="flexCheck">
+              Excluir outras
+            </label>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <div id="table-content">
+      <div id="counter" hidden="true">
+        <label for="countProfessor"
+          >Total de alunos que escolheram este professor opção:
+        </label>
+        <span id="countProfessor">0</span>
+      </div>
+      <div
+        class="table-wrapper-scroll-y my-custom-scrollbar tableFixHead"
+        id="dataShow"
+      >
+        <table
+          id="dataShower"
+          class="table table-bordered table-striped table-hover"
+        >
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">Data do Registro</th>
+              <th scope="col">Matrícula</th>
+              <th scope="col">Primeira</th>
+              <th scope="col">Segunda</th>
+              <th scope="col">Terceira</th>
+              <th scope="col">Quarta</th>
+              <th scope="col">Quinta</th>
+              <th scope="col">Sexta</th>
+            </tr>
+          </thead>
+          <tbody id="studentDataShowerBody"></tbody>
+        </table>
+        <div class="loader" id="loader"></div>
+      </div>
+      <div id="previousDiv">
+        <a href="./index.html" class="previous round">&#8249; Voltar</a>
+      </div>
+    </div>
+    <!-- <script src="./scripts/metadata.js"></script> -->
+    <!-- <script src="./scripts/data.js"></script> -->
+    <script src="./scripts/student-data.js"></script>
+  </body>
+</html>
