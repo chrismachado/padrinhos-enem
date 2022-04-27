@@ -99,7 +99,7 @@ table > #studentDataShowerBody > tr > td {
   text-align: left;
 }
 table > #studentDataShowerBody > tr > td + td {
-  padding-top: 12px;
+  padding-top: 6px;
 }
 
 table > #studentDataShowerBody > tr > td + td + td {
@@ -119,7 +119,12 @@ table > #studentDataShowerBody > tr > td + td + td {
 
 .my-custom-scrollbar {
   position: relative;
-  height: 500px;
+  height: 46.7vh;
+  overflow: auto;
+}
+.student-scrollbar {
+  position: relative;
+  height: 30vh;
   overflow: auto;
 }
 
@@ -218,7 +223,7 @@ table > #studentDataShowerBody > tr > td + td + td {
   display: inline-flex;
   padding: 16px 48px;
   font-size: 3ch;
-  margin-left: calc(50vw - 48px);
+  margin-left: calc(50vw - 82px);
   margin-bottom: 4vh;
   text-decoration: none;
 }

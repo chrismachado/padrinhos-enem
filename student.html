@@ -14,7 +14,6 @@
     <div id="header">
       <div id="title">
         <span>Padrinhos do ENEM 2022</span>
-        <span>Resultados Alunos</span>
       </div>
       <div id="selectField">
         <label for="student">Selecione um Aluno: </label>
@@ -29,18 +28,6 @@
             <option value="ELETROMECÂNICA">Eletromecânica</option>
             <option value="INFORMÁTICA">Informática</option>
           </select>
-
-          <!-- <div class="form-check form-switch" id="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheck"
-            />
-            <label class="form-check-label" for="flexCheck">
-              Excluir outras
-            </label>
-          </div> -->
         </div>
       </div>
     </div>
@@ -53,13 +40,13 @@
         <span id="countProfessor">0</span>
       </div>
       <div
-        class="table-wrapper-scroll-y my-custom-scrollbar tableFixHead"
+        class="table-wrapper-scroll-y student-scrollbar tableFixHead"
         id="dataShow"
       >
         <table
           id="dataShower"
           class="table table-bordered table-striped table-hover"
-        >
+          aria-describedby="">
           <thead class="table-dark">
             <tr>
               <th scope="col">Data do Registro</th>
