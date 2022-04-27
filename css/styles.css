@@ -2,6 +2,7 @@
   margin: auto 25vw;
   width: 50%;
 }
+
 #title > span {
   font-size: max(4.2vw, 38px);
 }
@@ -23,6 +24,8 @@
   font-weight: normal;
 }
 #professor,
+#student,
+#curso-select,
 #sort-select {
   font-size: max(1.2vw, 12px);
 }
@@ -46,6 +49,25 @@
   outline: none !important;
 }
 
+#choices {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15rem;
+}
+#teacher_link {
+  margin-right: 3rem;
+}
+
+#teacher_link a,
+#student_link a {
+  font-size: 80px;
+  text-decoration: none;
+  min-width: 25rem;
+  color: #d6dee1;
+}
+
+
 #dataShow,
 #counter {
   margin: 5px auto;
@@ -58,7 +80,7 @@
   font-weight: 300;
 }
 
-#dataShowerBody {
+#dataShowerBody, #studentDataShowerBody {
   cursor: pointer;
 }
 
@@ -68,7 +90,20 @@
 
 table > tbody > tr > td + td + td {
   font-size: xx-large;
-  text-align: center;
+  text-align: left;
+  min-width: 20px;
+}
+
+table > #studentDataShowerBody > tr > td {
+  font-size: medium;
+  text-align: left;
+}
+table > #studentDataShowerBody > tr > td + td {
+  padding-top: 12px;
+}
+
+table > #studentDataShowerBody > tr > td + td + td {
+  padding-top: 6px;
   min-width: 20px;
 }
 
@@ -127,4 +162,71 @@ table > tbody > tr > td + td + td {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.btn {
+  box-sizing: border-box;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: transparent;
+  border: 2px solid #e74c3c;
+  border-radius: 0.6em;
+  color: #e74c3c;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-self: center;
+      -ms-flex-item-align: center;
+          align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 20px;
+  padding: 1.2em 2.8em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+.btn:hover, .btn:focus {
+  color: #fff;
+  outline: 0;
+}
+.fourth {
+  border-color: #f1c40f;
+  color: #fff;
+  background-image: -webkit-linear-gradient(45deg, #f1c40f 50%, transparent 50%);
+  background-image: linear-gradient(45deg, #f1c40f 50%, transparent 50%);
+  background-position: 100%;
+  background-size: 400%;
+  -webkit-transition: background 300ms ease-in-out;
+  transition: background 300ms ease-in-out;
+}
+.fourth:hover {
+  background-position: 0;
+}
+
+#styledBody {
+  background: #2c3e50;
+}
+
+#previousDiv > a{
+  display: inline-flex;
+  padding: 16px 48px;
+  font-size: 3ch;
+  margin-left: calc(50vw - 48px);
+  margin-bottom: 4vh;
+  text-decoration: none;
+}
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+.round {
+  border-radius: 20px;
 }
