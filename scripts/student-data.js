@@ -35,7 +35,9 @@ function fillSelectWithNames(data) {
     option.value = 'not-selected';
     option.innerHTML = "Selecione uma opção";
     studentSelect.appendChild(option);
-    data.sort();
+    data.sort((a, b) => {
+        return (a.toUpperCase() < b.toUpperCase() ? -1 : 1);
+    });
     data.forEach(item => {
         var option = document.createElement("option");
         option.value = item;

@@ -7,9 +7,6 @@ const countProfessor = document.getElementById("countProfessor");
 const spanAccepted = '<span class="glyphicon glyphicon-ok text-success"></span>';
 const spanDenied = '<span class="glyphicon glyphicon-minus"></span>';
 const linkToJson = 'https://opensheet.elk.sh/1uhSniGStxjzYqFRI9InX0shdclQFX8oWMZZq2G90O1s/A1:Z14989';
-// const linkToJson = './resource/2021/data.xlsx';
-// const linkToJson = 'https://opensheet.elk.sh/1pAEt9qXRtF_sORbLP-0PJIphstuPf8yKMSXH-oIj2TQ/A1:Z14989'; // 21
-
 
 async function loadData() {
     dataTable.innerHTML = '';
@@ -29,23 +26,6 @@ async function loadData() {
     newData = filterDataByOption(newData, sortSelect.value);
     fillTable(sortByKey(newData, sortSelect.value));
     statistics(newData);
-}
-
-function showData(data) {
-    let finalStr = '';
-    data.forEach(function (item) {
-        finalStr += "Nome: " + item["Informe seu nome completo."] + "\n";
-        finalStr += "Curso " + item["Informe o seu curso."] + "\n";
-        finalStr += "Primeira opção " + item["Primeira opção"] + "\t";
-        finalStr += "Segunda opção " + item["Segunda opção"] + "\t";
-        finalStr += "Terceira opção " + item["Terceira opção"] + "\t";
-        finalStr += "Quarta opção " + item["Quarta opção"] + "\t";
-        finalStr += "Quinta opção " + item["Quinta opção"] + "\t";
-        finalStr += "Sexta opção " + item["Sexta opção"] + "\t";
-    });
-
-    document.querySelector("#dataShow").innerText += finalStr;
-    console.log(finalStr)
 }
 
 function fillTable(data) {
