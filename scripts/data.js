@@ -6,7 +6,7 @@ const flexCheck = document.getElementById("flexCheck");
 const countProfessor = document.getElementById("countProfessor");
 const spanAccepted = '<span class="glyphicon glyphicon-ok text-success"></span>';
 const spanDenied = '<span class="glyphicon glyphicon-minus"></span>';
-const linkToJson = 'https://opensheet.elk.sh/1uhSniGStxjzYqFRI9InX0shdclQFX8oWMZZq2G90O1s/A1:Z14989';
+const linkToJson = 'https://opensheet.elk.sh/1cPNP7961gcQDJds6H6fpVKdC3qbc8sOieHB4akdiiXY/resposta';
 
 async function loadData() {
     dataTable.innerHTML = '';
