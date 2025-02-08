@@ -2,7 +2,7 @@ const dataTable = document.getElementById("studentDataShowerBody");
 const loadingDiv = document.getElementById("loading");
 const studentSelect = document.getElementById("student");
 const cursoSelect = document.getElementById("curso-select");
-const linkToJson = 'https://opensheet.elk.sh/1uhSniGStxjzYqFRI9InX0shdclQFX8oWMZZq2G90O1s/A1:Z14989';
+const linkToJson = 'https://opensheet.elk.sh/1cPNP7961gcQDJds6H6fpVKdC3qbc8sOieHB4akdiiXY/resposta';
 let all_names = [];
 let all_course_select = [];
 
